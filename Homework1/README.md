@@ -32,7 +32,7 @@ terraform validate
 terraform plan
 
 ## Deploy AWS terraform configuration
-echo 'yes'|terraform apply
+terraform apply -auto-approve 
 
 ### The output in the end will show you the instances URL of the web servers.
 
