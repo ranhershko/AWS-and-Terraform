@@ -13,6 +13,9 @@ This folder contains a Terraform & Packer configuration that deploys 2 ubuntu ng
 
   ## For initialize terraform run
   terraform init
+  
+  ## Create aws key pair
+  aws ec2 create-key-pair --key-name opschl_nginx --query 'KeyMaterial' --output text > opschl_nginx.pem
 
 # Running this module automaticaly
 ./packer_n_terraform.sh
