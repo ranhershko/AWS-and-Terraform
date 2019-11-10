@@ -15,6 +15,11 @@ resource "aws_security_group" "opschl_nginx-sg-allow-ssh" {
     to_port     = 22
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name = "${var.opschl_tags["prefix_name"]}-g-allow-ssh"
+    Owner = "${var.opschl_tags["owner"]}"
+    Purpose = "${var.opschl_tags["purpose"]}"
+  }
 }
 
 resource "aws_security_group" "opschl_nginx-sg-allow-http" {
@@ -33,6 +38,11 @@ resource "aws_security_group" "opschl_nginx-sg-allow-http" {
     to_port     = 80
     cidr_blocks = ["0.0.0.0/0"]
     protocol    = "tcp"
+  }
+  tags = {
+    Name = "${var.opschl_tags["prefix_name"]}-g-allow-http"
+    Owner = "${var.opschl_tags["owner"]}"
+    Purpose = "${var.opschl_tags["purpose"]}"
   }
 }
 
