@@ -7,3 +7,11 @@
 
 # .tfvars files
 *.tfvars
+
+### Packer ###
+## Cache objects
+#packer_cache/
+
+# file: ~/.gitignore_global
+# .DS_Store
+# .idea
