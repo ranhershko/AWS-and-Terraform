@@ -14,7 +14,7 @@ This folder contains a Terraform & Packer configuration that deploys 2 ubuntu ng
   ## For initialize terraform run
   terraform init
 
-# Running this module Automaticaly
+# Running this module automaticaly
 packer_n_terraform.sh
 
 # Running this module manually
