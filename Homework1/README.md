@@ -31,7 +31,7 @@ terraform plan
 ## Deploy AWS terraform configuration
 echo 'yes'|terraform apply
 
-## The output in the end will show you the instances URL of the web server.
+### The output in the end will show you the instances URL of the web server.
 
 ## When you're done, run
 echo 'yes'|terraform destroy
