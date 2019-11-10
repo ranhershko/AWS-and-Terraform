@@ -17,6 +17,5 @@ resource "aws_instance" "opschl_nginx" {
     Name = "${var.opschl_tags["prefix_name"]}_instance_${count.index}"
     Owner = "${var.opschl_tags["owner"]}"
     Purpose = "${var.opschl_tags["purpose"]}"
-    Server_Name = "${aws_instance.opschl_nginx[1].public_dns}"
   }
 }
