@@ -8,7 +8,7 @@ if [[ "$?" -eq 0 ]] ; then
     terraform plan
     if [[ "$?" -eq 0 ]] ; then
       echo "Terraform plan done"
-      echo 'yes'|terraform apply
+      terraform apply -auto-approve 
     fi
     echo "AWS environment build done"
   fi
