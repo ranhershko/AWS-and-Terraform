@@ -10,8 +10,8 @@
 
 ### Packer ###
 ## Cache objects
-#packer_cache/
+packer_cache/
 
 # file: ~/.gitignore_global
-# .DS_Store
-# .idea
+.DS_Store
+.idea
