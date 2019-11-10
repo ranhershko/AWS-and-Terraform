@@ -1,6 +1,6 @@
 variable "region" {
   description = "AWS Region"
-  default = "us-east-1"
+  default     = "us-east-1"
 }
 
 variable "opschl_vpc1_cidr_block" {
@@ -9,14 +9,14 @@ variable "opschl_vpc1_cidr_block" {
 
 variable "instancetype" {
   description = "Nginx OpsSchool instance type"
-  default = "t2.medium"
+  default     = "t2.medium"
 }
 
 variable "opschl_tags" {
   type = map
   default = {
     prefix_name = "opschl_nginx"
-    owner = "Ran"
-    purpose = "learning"
+    owner       = "Ran"
+    purpose     = "learning"
   }
 }
