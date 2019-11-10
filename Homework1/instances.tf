@@ -19,23 +19,3 @@ resource "aws_instance" "opschl_nginx" {
     Purpose = "${var.opschl_tags["purpose"]}"
   }
 }
-
-//resource "aws_ebs_volume" "opschl_nginx-vol-2" {
-//  count = 2
-//  availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
-//  size = 10
-//  type = "gp2"
-//  tags = {
-//    Name = "${var.opschl_tags["prefix_name"]}_disk2_instance_${count.index}"
-//    Owner = "${var.opschl_tags["owner"]}"
-//    Purpose = "${var.opschl_tags["purpose"]}"
-//  }
-//}
-//
-//resource "aws_volume_attachment" "opschl_nginx-vol-2-attach" {
-//  count = 2
-//  device_name = "/dev/xvdh"
-//  instance_id = "${aws_instance.opschl_nginx[count.index].id}"
-//  volume_id = "${aws_ebs_volume.opschl_nginx-vol-2[count.index].id}"
-//}
-//
