@@ -2,8 +2,7 @@
 This folder contains a Terraform & Packer configuration that deploys 2 ubuntu nginx servers resources in AWS. The packer builds with Packer template and runs 2 EC2 Instances that uses it 
 
 ## Prerequisites
-  ## Configure your AWS credentials using
-  run:
+  ## Configure your AWS credentials
   1) aws configure
   2) for key_value in "aws_access_key_id" "aws_secret_access_key" ; do export `grep $key_value ~/.aws/credentials| tr '[:lower:]' '[:upper:]'|awk '{print $1 $2 $3}'`;done
 
