@@ -29,13 +29,12 @@ packer build template.packer
 terraform validate
 
 ## Display terraform configuration plan
-terraform plan
+terraform plan opschl_nginx.tfplan
 
 ## Deploy AWS terraform configuration
-terraform apply -auto-approve 
+terraform apply -auto-approve "opschl_nginx.tfplan"
 
 ### The output in the end will show you the instances URL of the web servers.
 
 ## When you're done, run
 terraform destroy -auto-approve
-
