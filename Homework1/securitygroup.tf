@@ -1,6 +1,6 @@
-resource "aws_security_group" "opschl_nginx-sg-allow-ssh" {
-  vpc_id      = "${aws_vpc.opschl_nginx_net1.id}"
-  name        = "${var.opschl_tags["prefix_name"]}-sg-allow-ssh"
+resource "aws_security_group" "opschl_nginx-sg-allow" {
+  vpc_id      = aws_vpc.opschl_nginx-net1.id
+  name        = "${var.opschl_tags["prefix_name"]}-sg-allow"
   description = "allow ssh and http"
   egress {
     from_port   = 0
@@ -8,31 +8,12 @@ resource "aws_security_group" "opschl_nginx-sg-allow-ssh" {
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
-
   ingress {
     from_port   = 22
     protocol    = "tcp"
     to_port     = 22
     cidr_blocks = ["0.0.0.0/0"]
   }
-  tags = {
-    Name = "${var.opschl_tags["prefix_name"]}-g-allow-ssh"
-    Owner = "${var.opschl_tags["owner"]}"
-    Purpose = "${var.opschl_tags["purpose"]}"
-  }
-}
-
-resource "aws_security_group" "opschl_nginx-sg-allow-http" {
-  vpc_id      = "${aws_vpc.opschl_nginx_net1.id}"
-  name        = "${var.opschl_tags["prefix_name"]}-sg-allow-http"
-  description = "allow http"
-  egress {
-    from_port   = 0
-    protocol    = "-1"
-    to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   ingress {
     from_port   = 80
     to_port     = 80
@@ -40,9 +21,9 @@ resource "aws_security_group" "opschl_nginx-sg-allow-http" {
     protocol    = "tcp"
   }
   tags = {
-    Name = "${var.opschl_tags["prefix_name"]}-g-allow-http"
-    Owner = "${var.opschl_tags["owner"]}"
-    Purpose = "${var.opschl_tags["purpose"]}"
+    Name    = "${var.opschl_tags["prefix_name"]}-sg-allow"
+    Owner   = var.opschl_tags["owner"]
+    Purpose = var.opschl_tags["purpose"]
   }
 }
 

@@ -3,7 +3,7 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "opschl_vpc1_cidr_block" {
+variable "opschl_vpc1-cidr_block" {
   default = "10.0.0.0/16"
 }
 
@@ -19,4 +19,15 @@ variable "opschl_tags" {
     owner       = "Ran"
     purpose     = "learning"
   }
+}
+
+variable "server_name" {
+  description = "instance server public hostname"
+  default     = "localhost"
+}
+
+variable "resource_count" {
+  description = "Resource count needed"
+  type        = number
+  default     = 2
 }
