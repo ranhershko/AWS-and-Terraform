@@ -15,9 +15,9 @@ This folder contains a Terraform & Packer configuration that deploys 2 ubuntu ng
   terraform init
   
   ## Create aws key pair
-  aws ec2 create-key-pair --key-name opschl_nginx --query 'KeyMaterial' --output text > opschl_nginx.pem
+  AWS key-pair will be create automatically
 
-# Running this module automaticaly
+# Running this module automatically
 ./packer_n_terraform.sh
 
 # Running this module manually
@@ -37,5 +37,5 @@ terraform apply -auto-approve
 ### The output in the end will show you the instances URL of the web servers.
 
 ## When you're done, run
-echo 'yes'|terraform destroy
+terraform destroy -auto-approve
 
