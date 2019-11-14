@@ -20,10 +20,7 @@ resource "aws_security_group" "opschl_nginx-sg-allow" {
     cidr_blocks = ["0.0.0.0/0"]
     protocol    = "tcp"
   }
-  tags = {
-    Name    = "${var.opschl_tags["prefix_name"]}-sg-allow"
-    Owner   = var.opschl_tags["owner"]
-    Purpose = var.opschl_tags["purpose"]
-  }
+
+  tags = merge(local.common_tags, { Name    = "${var.opschl_tags["prefix_name"]}-sg-allow"})
 }
 
