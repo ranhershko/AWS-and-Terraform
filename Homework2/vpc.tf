@@ -59,6 +59,6 @@ resource "aws_route_table_association" "opschl_ha_web_db-public-rt-associate" {
 
 resource "aws_route_table_association" "opschl_ha_web_db-private-rt-associate" {
   count          = "${length(var.list_sub_name)}"
-  subnet_id      = "${element(aws_subnet.opschl_ha_web_db-subnet.*.id, count.index + 1)}"
+  subnet_id      = "${element(aws_subnet.opschl_ha_web_db-subnet.*.id, count.index + 2)}"
   route_table_id = aws_route_table.opschl_ha_web_db-private-rt[count.index].id
 }
