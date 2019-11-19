@@ -21,6 +21,6 @@ resource "aws_security_group" "opschl_nginx-sg-allow" {
     protocol    = "tcp"
   }
 
-  tags = merge(local.common_tags, { Name    = "${var.opschl_tags["prefix_name"]}-sg-allow"})
+  tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-sg-allow" })
 }
 
