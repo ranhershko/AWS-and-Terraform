@@ -29,7 +29,7 @@ packer build template.packer
 terraform validate
 
 ## Display terraform configuration plan
-terraform plan -out opschl_nginx.tfplan
+terraform plan opschl_nginx.tfplan
 
 ## Deploy AWS terraform configuration
 terraform apply -auto-approve "opschl_nginx.tfplan"
