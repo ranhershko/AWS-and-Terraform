@@ -1,5 +1,6 @@
 # Terraform & Packer
-This folder contains a Terraform & Packer configuration that deploys 2 ubuntu nginx servers resources in AWS. The packer builds with Packer template and runs 2 EC2 Instances that uses it 
+This folder contains a Terraform & Packer configuration that deploys 4 ubuntu servers resources highly available and secure AWS environment. The packer builds with Packer template and runs 4 EC2 Instances that uses it 
+
 
 ## Prerequisites
   ## Configure your AWS credentials using
