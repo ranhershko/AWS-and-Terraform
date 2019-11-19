@@ -13,7 +13,7 @@ resource "aws_instance" "opschl_nginx" {
     encrypted             = true
     delete_on_termination = true
   }
-  tags = merge(local.common_tags, { Name    = "${var.opschl_tags["prefix_name"]}-instance_${count.index + 1}"})
+  tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-instance_${count.index + 1}" })
   //    server_name = "${aws_instance.opschl_nginx[count.index].public_hostname}"
 }
 
