@@ -1,3 +1,13 @@
+variable "shared_credentials_file" {
+  type    = "string"
+  default = "~/.aws/credentials"
+}
+
+variable "region" {
+  type    = "string"
+  default = "us-east-1"
+}
+
 variable "list_sub_type" {
   description = "VPC subnets type list"
   type        = "list"
@@ -12,12 +22,6 @@ variable "list_sub_name" {
 
 locals {
   sub_list = "${setproduct(var.list_sub_type, var.list_sub_name)}"
-}
-
-variable "region" {
-  description = "AWS Region"
-  type        = "string"
-  default     = "us-east-1"
 }
 
 variable "opschl_ha_web_db-vpc1-cidr_block" {
@@ -39,9 +43,9 @@ variable "instancetype" {
 variable "opschl_tags" {
   type = "map"
   default = {
-    prefix_name = "opschl_ha_web_db"
-    Owner = "Ran"
-    Purpose = "Learning"
+    prefix_name = "opschl-ha-web-db"
+    Owner       = "Ran"
+    Purpose     = "Learning"
   }
 }
 

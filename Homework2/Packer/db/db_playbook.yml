@@ -5,10 +5,7 @@
   become: true
   tasks:
   - name: Install MySQL
-    apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=present
-    with_items:
-    - python-mysqldb
-    - mysql-server
+    apt: name=['python-mysqldb', 'mysql-server'] update_cache=yes cache_valid_time=3600 state=present
   - name: copy cnf
     copy: src=/tmp/.my.cnf dest=~/.my.cnf owner=ubuntu mode=0644
   - name: Start the MySQL service
@@ -16,6 +13,8 @@
       name: mysql 
       state: started
       enabled: true
+  - name: Modify configuration file to listen on all interfaces
+    lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf regexp="^bind-address" line="bind-address=0.0.0.0"
   - name: update mysql root password for all root accounts
     mysql_user: 
       name: root 

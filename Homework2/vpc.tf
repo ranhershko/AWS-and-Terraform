@@ -48,7 +48,7 @@ resource "aws_route_table" "opschl_ha_web_db-private-rt" {
     cidr_block = var.opschl_ha_web_db-world-wide-cidr_block
     gateway_id = aws_nat_gateway.opschl_ha_web_db-natgw[count.index].id
   }
-  tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-private-rt-${count.index}" })
+  tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-private-rt-${count.index + 1}" })
 }
 
 resource "aws_route_table_association" "opschl_ha_web_db-public-rt-associate" {

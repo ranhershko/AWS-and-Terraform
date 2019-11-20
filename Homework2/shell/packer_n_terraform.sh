@@ -1,3 +1,2 @@
 #! /bin/bash 
-packer build template.packer && terraform validate && terraform plan -out opschl_nginx.tfplan && terraform apply -auto-approve "opschl_nginx.tfplan"
-
+packer build Packer/web/template.packer && packer build Packer/db/template.packer && terraform validate && terraform plan -out opschl_ha_web_db.tvplan && terraform apply -auto-approve "opschl_ha_web_db.tvplan"
