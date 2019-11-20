@@ -23,8 +23,7 @@ This folder contains a Terraform & Packer configuration that deploys 4 ubuntu se
 # Running this module manually
 
 ## Building AWS AMI image
-packer build Packer/web/template.packer
-packer build Packer/db/template.packer
+packer build Packer/web/template.packer && packer build Packer/db/template.packer
 
 ## Validate terraform code
 terraform validate
