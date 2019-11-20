@@ -50,7 +50,8 @@
     },
     {
       "type": "ansible-local",
-      "playbook_file": "./Packer/db/db_playbook.yml"
+      "playbook_file": "./Packer/db/db_playbook.yml",
+      "extra_arguments": [ "--extra-vars ansible_python_interpreter=/usr/bin/python3" ]
     }
   ]
 }
