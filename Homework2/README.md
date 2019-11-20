@@ -5,7 +5,7 @@ This folder contains a Terraform & Packer configuration that deploys 4 ubuntu se
 ## Prerequisites
   ## Configure your AWS credentials using
   run:
-  1) aws configure
+  aws configure
 
   ## Install terraform & packer
   Install Terraform and make sure it's on your PATH.
