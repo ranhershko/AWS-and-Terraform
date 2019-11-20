@@ -18,7 +18,7 @@ This folder contains a Terraform & Packer configuration that deploys 4 ubuntu se
   AWS key-pair will be create automatically and save on local dir
 
 # Running this module automatically
-./packer_n_terraform.sh
+./shell/packer_n_terraform.sh
 
 # Running this module manually
 
