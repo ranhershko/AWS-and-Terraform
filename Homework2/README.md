@@ -40,4 +40,4 @@ terraform apply -auto-approve "opschl_ha_web_db.tvplan"
 
 ## When you're done, run
 terraform destroy -auto-approve
-## The AWS AMI images that been created and the disks snapshot needs to delete manually
+### The AWS AMI images that been created and the disks snapshot needs to delete manually
