@@ -2,7 +2,7 @@
 
 sudo add-apt-repository universe
 sudo apt-get update
-sudo apt-get upgrade python3
+sudo apt-get upgrade python3 aptitude
 alias python='/usr/bin/python3'
 apt-cache search python3-pip$
 sudo DEBIAN_FRONTEND=noninteractive apt-get install python3-pip -y
