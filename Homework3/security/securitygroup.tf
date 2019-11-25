@@ -1,6 +1,6 @@
 resource "aws_security_group" "opschl_ha_web_db-webnet-sg-allow" {
-  vpc_id      = aws_vpc.opschl_ha_web_db_net1.id
-  name        = "${var.opschl_tags["prefix_name"]}-webnet-sg-allow"
+  vpc_id      = data.terraform_remote_state.vpc.id
+  name        = "${data.terraform_remote_state.var.opschl_tags["prefix_name"]}-webnet-sg-allow"
   description = "allow ssh from my_ip and http from web net only"
   egress {
     from_port   = 0
