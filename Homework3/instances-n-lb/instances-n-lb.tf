@@ -1,5 +1,5 @@
 module "web_instance" {
-  source = "../opschl-modules/opschl-base-instance"
+  source = "../opschl-modules/opschl-base-instance-n-loadbalancer"
 
   instances_count = length(data.terraform_remote_state.vpc.outputs.pub_subnet_ids)
   opschl_tags = { prefix_name = "opschl-web-db-ha" }
