@@ -21,7 +21,7 @@ variable "list_sub_name" {
 }
 
 locals {
-  sub_list = "${setproduct(var.list_sub_type, var.list_sub_name)}"
+  sub_list = setproduct(var.list_sub_type, var.list_sub_name)
 }
 
 variable "opschl-web-db-ha-vpc-cidr" {

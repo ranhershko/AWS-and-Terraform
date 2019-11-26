@@ -91,3 +91,12 @@ resource "aws_lb_target_group_attachment" "opschl_ha_web_db-dbPrivate" {
   target_id        = aws_instance.opschl_ha_web_db[count.index + 2].id
   port             = aws_lb_target_group.opschl_ha_web_db-dbPrivate.port
 }
+
+locals {
+  description = "Tags applied to all ressources"
+  common_tags = {
+    Owner     = "Ran"
+    Purpose   = "Learning"
+    CreatedBy = "Terraform-${module.vpc.project}"
+  }
+}
