@@ -23,3 +23,11 @@ module "db_instance" {
   tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-${count.index < 2 ? var.list_sub_type[0] : var.list_sub_type[1]}instance_${(count.index % (length(var.list_sub_type))) + 1}" })
 }
 
+locals {
+  description = "Tags applied to all ressources"
+  common_tags = {
+    Owner     = "Ran"
+    Purpose   = "Learning"
+    CreatedBy = "Terraform-${module.vpc.project}"
+  }
+}
