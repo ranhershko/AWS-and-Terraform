@@ -1,71 +1,41 @@
-resource "aws_security_group" "opschl_ha_web_db-webnet-sg-allow" {
-  vpc_id      = data.terraform_remote_state.vpc.id
-  name        = "${data.terraform_remote_state.var.opschl_tags["prefix_name"]}-webnet-sg-allow"
-  description = "allow ssh from my_ip and http from web net only"
-  egress {
-    from_port   = 0
-    protocol    = "-1"
-    to_port     = 0
-    cidr_blocks = [var.opschl_ha_web_db-world-wide-cidr_block]
-  }
-  ingress {
-    from_port   = 22
-    protocol    = "tcp"
-    to_port     = 22
-    cidr_blocks = ["${chomp(data.http.myip.body)}/32"]
-  }
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    cidr_blocks = [var.opschl_ha_web_db-vpc1-cidr_block]
-    protocol    = "tcp"
-  }
-
-  tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-webnet-sg-allow" })
+module "security_web" {
+  source = "../opschl-modules/opschl-base-security"
+  internet_cidr = "0.0.0.0/0"
+  if_public_lb = false
+  service_port = 80
+  svc_name = "web"
+  vpc_cidr = data.terraform_remote_state.vpc.outputs.vpc_cidr
+  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+  opschl_tags = data.terraform_remote_state.vpc.outputs.project_prfix
 }
 
-resource "aws_security_group" "opschl_ha_web_db-dbnet-sg-allow" {
-  vpc_id      = aws_vpc.opschl_ha_web_db_net1.id
-  name        = "${var.opschl_tags["prefix_name"]}-dbnet-sg-allow"
-  description = "allow ssh and mysql from web servers only"
-  egress {
-    from_port   = 0
-    protocol    = "-1"
-    to_port     = 0
-    cidr_blocks = [var.opschl_ha_web_db-world-wide-cidr_block]
-  }
-  ingress {
-    from_port   = 22
-    protocol    = "tcp"
-    to_port     = 22
-    cidr_blocks = [var.opschl_ha_web_db-vpc1-cidr_block]
-  }
-  ingress {
-    from_port   = 3306
-    to_port     = 3306
-    cidr_blocks = [var.opschl_ha_web_db-vpc1-cidr_block]
-    protocol    = "tcp"
-  }
-
-  tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-dbnet-sg-allow" })
+module "security_db" {
+  source = "../opschl-modules/opschl-base-security"
+  internet_cidr = "0.0.0.0/0"
+  if_public_lb = false
+  service_port = 80
+  svc_name = "db"
+  vpc_cidr = data.terraform_remote_state.vpc.outputs.vpc_cidr
+  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+  opschl_tags = data.terraform_remote_state.vpc.outputs.project_prfix
 }
 
-resource "aws_security_group" "opschl_ha_web_db-public-lb-sg-allow" {
-  vpc_id      = aws_vpc.opschl_ha_web_db_net1.id
-  name        = "${var.opschl_tags["prefix_name"]}-public-lb-sg-allow"
-  description = "allow http from world wide"
-  egress {
-    from_port   = 0
-    protocol    = "-1"
-    to_port     = 0
-    cidr_blocks = [var.opschl_ha_web_db-world-wide-cidr_block]
-  }
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    cidr_blocks = [var.opschl_ha_web_db-world-wide-cidr_block]
-    protocol    = "tcp"
-  }
+module "security_pub_lb" {
+  source = "../opschl-modules/opschl-base-security"
+  internet_cidr = "0.0.0.0/0"
+  if_public_lb = false
+  service_port = 80
+  svc_name = "db"
+  vpc_cidr = data.terraform_remote_state.vpc.outputs.vpc_cidr
+  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+  opschl_tags = data.terraform_remote_state.vpc.outputs.project_prfix
+}
 
-  tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-public-lb-sg-allow" })
+locals {
+  description = "Tags applied to all ressources"
+  common_tags = {
+    Owner     = "Ran"
+    Purpose   = "Learning"
+    CreatedBy = "Terraform-${data.terraform_remote_state.vpc.outputs.project_prfix}"
+  }
 }

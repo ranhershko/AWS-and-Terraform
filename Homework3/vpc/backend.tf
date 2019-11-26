@@ -1,4 +1,5 @@
 terraform {
+  required_version = ">= 0.12.0"
   backend "s3" {
     encrypt = true
     bucket  = "opschl-web-db-ha-terrform-remote-state"

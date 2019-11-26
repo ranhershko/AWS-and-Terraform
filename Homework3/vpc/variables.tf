@@ -34,9 +34,6 @@ variable "net_cidr" {
   default     = "10.0.0.0/16"
 }
 
-variable "instancetype" {
-  description = "HA web & db OpsSchool instance type"
-  type        = string
-  default     = "t2.micro"
+variable "public_subnet_ids" {
+  default = module.public_subnet.
 }
-
