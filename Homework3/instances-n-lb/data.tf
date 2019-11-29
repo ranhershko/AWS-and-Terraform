@@ -16,22 +16,22 @@ data "terraform_remote_state" "security" {
   }
 }
 
-data "aws_ami" "opschl_ha_web_ami" {
+data "aws_ami" "opschl_web_db_ha-web_ami" {
   most_recent = true
   owners = ["self"]
 
   filter {
     name   = "tag:Name"
-    values = ["opschl_ha_web_db-webInstance-AMI*"]
+    values = ["opschl_web_db_ha-webInstance-AMI*"]
   }
 }
 
-data "aws_ami" "opschl_ha_db_ami" {
+data "aws_ami" "opschl_web_db_ha-db_ami" {
   most_recent = true
   owners = ["self"]
 
   filter {
     name   = "tag:Name"
-    values = ["opschl_ha_web_db-dbInstance-AMI*"]
+    values = ["opschl_web_db_ha-dbInstance-AMI*"]
   }
 }

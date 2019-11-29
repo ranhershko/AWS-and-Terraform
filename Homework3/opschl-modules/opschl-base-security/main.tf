@@ -1,4 +1,5 @@
 resource "aws_security_group" "opschl_svc-sg-allow" {
+  count = (var.current_count > 0 ? 1 : 0)
   vpc_id      = var.vpc_id
   name        = "${var.opschl_tags["prefix_name"]}-${var.svc_name}net-sg-allow"
   description = "allow ssh from my_ip and ${var.svc_name} from vpc_cidr only"
@@ -12,7 +13,7 @@ resource "aws_security_group" "opschl_svc-sg-allow" {
     from_port   = var.ssh_port
     to_port     = var.ssh_port
     protocol    = "tcp"
-    cidr_blocks = [var.svc_name == web ? "${chomp(data.http.myip.body)}/32" : var.vpc_cidr]
+    cidr_blocks = (var.svc_name == "web" ? ["${chomp(data.http.myip.body)}/32"] : [var.vpc_cidr])
   }
   ingress {
     from_port   = var.service_port
@@ -24,9 +25,8 @@ resource "aws_security_group" "opschl_svc-sg-allow" {
   tags = merge(local.common_tags,  { Name = "${var.opschl_tags["prefix_name"]}-${var.svc_name}net-sg-allow" })
 }
 
-
 resource "aws_security_group" "opschl_public-lb-sg-allow" {
-  count = var.if_public_lb == true ? 1 : 0
+  count = (var.svc_name == "web" && var.current_count > 0 ? 1 : 0)
   vpc_id      = var.vpc_id
   name        = "${var.opschl_tags["prefix_name"]}-public-lb-sg-allow"
   description = "allow lb http from world wide"
@@ -46,7 +46,3 @@ resource "aws_security_group" "opschl_public-lb-sg-allow" {
   tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-public-lb-sg-allow" })
 }
 
-locals {
-  description = "Tags applied to all ressources"
-  common_tags = {}
-}

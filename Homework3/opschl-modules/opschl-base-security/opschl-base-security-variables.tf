@@ -27,6 +27,7 @@ variable "vpc_cidr" {
 variable "internet_cidr" {
   description = "cidr for internet"
   type = string
+  default = "0.0.0.0/0"
 }
 
 variable "svc_name" {
@@ -39,21 +40,20 @@ variable "vpc_id" {
   type = string
 }
 
-variable "if_public_lb" {
-  description = "if public lb (true/false)"
-  type = bool
+variable "current_count" {
+  type = number
 }
 
 variable "opschl_tags" {
   type = map
+  default = {prefix_name = "opschl"}
 }
 
 locals {
   description = "Tags applied to all ressources"
   common_tags = {
-    Owner       = "Ran"
-    Purpose     = "Learning"
-    Created_By   = "Terraform-${var.opschl_tags["prefix_name"]}"
+    Owner = "Ran"
+    Purpose = "Learning"
   }
 }
 

@@ -15,28 +15,28 @@
           "virtualization-type":"hvm",
           "root-device-type":"ebs",
           "name":"ubuntu/images/hvm-ssd/ubuntu-disco-19.04-amd64-server-*"
-          
+
         },
         "owners": ["099720109477"],
         "most_recent":true
       },
       "instance_type": "t2.micro",
-      "ssh_username": "ubuntu", 
-      "ami_name": "opschl_ha_web_db-webInstance{{isotime | clean_ami_name}}",
-      "ami_description": "opschl_ha_web_db webInstance AMI",
+      "ssh_username": "ubuntu",
+      "ami_name": "opschl_web_db_ha-webInstance{{isotime | clean_ami_name}}",
+      "ami_description": "opschl_web_db_ha webInstance AMI",
       "tags": {
-        "Name": "opschl_ha_web_db-webInstance-AMI",
+        "Name": "opschl_web_db_ha-webInstance-AMI",
         "purpose": "learning",
-        "ami-name": "opschl_ha_web_db-webInstance-AMI {{timestamp}}",
+        "ami-name": "opschl_web_db_ha-webInstance-AMI {{timestamp}}",
         "owner": "Ran"
       },
       "run_tags": {
-        "Name": "opschl_ha_web_db-webInstance",
+        "Name": "opschl_web_db_ha-webInstance",
         "purpose": "learning",
-        "ami-name": "Packer-opschl_ha_web_db-webInstance {{timestamp}}",
+        "ami-name": "Packer-opschl_web_db_ha-webInstance {{timestamp}}",
         "owner": "Ran"
       }
-    }		
+    }
 	],
   "provisioners": [
     {

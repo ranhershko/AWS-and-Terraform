@@ -19,6 +19,10 @@ variable "public_instance" {
   type = bool
 }
 
+variable "security_group_ids" {
+  description
+}
+
 variable "subnet_ids" {
   type = list
 }
@@ -34,13 +38,3 @@ variable "opschl_tags" {
 variable "ami_id" {
   type = string
 }
-
-locals {
-  description = "Tags applied to all ressources"
-  common_tags = {
-    Owner       = "Ran"
-    Purpose     = "Learning"
-    Created_By   = "Terraform-${var.opschl_tags["prefix_name"]}"
-  }
-}
-

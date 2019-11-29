@@ -2,7 +2,7 @@ module "vpc" {
   source = "../opschl-modules/opschl-base-vpc"
 
   net_cidr    = var.opschl-web-db-ha-vpc-cidr
-  opschl_tags = { prefix_name = "opschl-web-db-ha" }
+  opschl_tags = var.opschl_tags
 }
 
 module "public_subnet" {
@@ -14,7 +14,7 @@ module "public_subnet" {
   vpc_cidr       = module.vpc.cidr
   svc_sub_type   = "web"
   sub_cidr_init  = 0
-  opschl_tags    = { prefix_name = module.vpc.project }
+  opschl_tags = var.opschl_tags
 }
 
 module "privat_subnet" {
@@ -26,7 +26,7 @@ module "privat_subnet" {
   vpc_cidr       = module.vpc.cidr
   svc_sub_type   = "db"
   sub_cidr_init  = module.public_subnet.pub_sub_count
-  opschl_tags    = { prefix_name = module.vpc.project }
+  opschl_tags = var.opschl_tags
 }
 
 locals {

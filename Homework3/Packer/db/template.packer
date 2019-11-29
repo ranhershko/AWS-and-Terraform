@@ -21,22 +21,22 @@
         "most_recent":true
       },
       "instance_type": "t2.micro",
-      "ssh_username": "ubuntu", 
-      "ami_name": "opschl_ha_web_db-dbInstance{{isotime | clean_ami_name}}",
-      "ami_description": "opschl_ha_web_db dbnstance AMI",
+      "ssh_username": "ubuntu",
+      "ami_name": "opschl_web_db_ha-dbInstance{{isotime | clean_ami_name}}",
+      "ami_description": "opschl_web_db_ha dbnstance AMI",
       "tags": {
-        "Name": "opschl_ha_web_db-dbInstance-AMI",
+        "Name": "opschl_web_db_ha-dbInstance-AMI",
         "purpose": "learning",
-        "ami-name": "opschl_ha_web_db-dbInstance-AMI {{timestamp}}",
+        "ami-name": "opschl_web_db_ha-dbInstance-AMI {{timestamp}}",
         "owner": "Ran"
       },
       "run_tags": {
-        "Name": "opschl_ha_web_db-dbInstance",
+        "Name": "opschl_web_db_ha-dbInstance",
         "purpose": "learning",
-        "ami-name": "Packer-opschl_ha_web_db-dbInstance {{timestamp}}",
+        "ami-name": "Packer-opschl_web_db_ha-dbInstance {{timestamp}}",
         "owner": "Ran"
       }
-    }		
+    }
 	],
   "provisioners": [
     {

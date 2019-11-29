@@ -1,3 +1,9 @@
+
+variable "opschl_tags" {
+  type = map
+  default = {prefix_name = "opschl"}
+}
+
 variable "create_igw" {
   description = "Internet GW attach (true/false)"
   default     = "true"
@@ -20,11 +26,6 @@ variable "enable_dns_support" {
 variable "enable_dns_hostnames" {
   description = "Enable DNS hostnames in VPC"
   default     = "true"
-}
-
-variable "opschl_tags" {
-  type = map
-  default = {prefix_name = "opschl"}
 }
 
 locals {

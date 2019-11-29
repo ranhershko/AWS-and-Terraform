@@ -1,3 +1,9 @@
+variable "opschl_tags" {
+  default = {
+    prefix_name = "opschl-web-db-ha"
+  }
+}
+
 variable "shared_credentials_file" {
   type    = string
   default = "~/.aws/credentials"
@@ -6,22 +12,6 @@ variable "shared_credentials_file" {
 variable "region" {
   type    = string
   default = "us-east-1"
-}
-
-variable "list_sub_type" {
-  description = "VPC subnets type list"
-  type        = list
-  default     = ["web", "db"]
-}
-
-variable "list_sub_name" {
-  description = "VPC subnets name list"
-  type        = list
-  default     = ["sub1", "sub2"]
-}
-
-locals {
-  sub_list = setproduct(var.list_sub_type, var.list_sub_name)
 }
 
 variable "opschl-web-db-ha-vpc-cidr" {
@@ -34,6 +24,4 @@ variable "net_cidr" {
   default     = "10.0.0.0/16"
 }
 
-variable "public_subnet_ids" {
-  default = module.public_subnet.
-}
+

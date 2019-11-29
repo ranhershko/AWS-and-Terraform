@@ -1,5 +1,5 @@
-output "project_prfix" {
-  value = module.vpc.project
+output "project" {
+  value = var.opschl_tags
 }
 
 output "vpc_id" {
