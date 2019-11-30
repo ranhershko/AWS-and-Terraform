@@ -28,6 +28,12 @@ variable "sub_cidr_init" {
   description = "sub_cidr init"
   type = number
 }
+
+variable "private_subnet_ids" {
+  description = "private_subnet_ids"
+  type = list
+}
+
 variable "public" {
   description = "map public network"
   type = bool
