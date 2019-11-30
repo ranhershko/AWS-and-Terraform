@@ -18,7 +18,7 @@ data "terraform_remote_state" "security" {
 
 data "aws_ami" "opschl_web_db_ha-web_ami" {
   most_recent = true
-  owners = ["self"]
+  owners      = ["self"]
 
   filter {
     name   = "tag:Name"
@@ -28,7 +28,7 @@ data "aws_ami" "opschl_web_db_ha-web_ami" {
 
 data "aws_ami" "opschl_web_db_ha-db_ami" {
   most_recent = true
-  owners = ["self"]
+  owners      = ["self"]
 
   filter {
     name   = "tag:Name"

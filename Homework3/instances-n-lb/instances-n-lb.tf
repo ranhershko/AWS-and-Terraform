@@ -1,5 +1,5 @@
 module "web_instance" {
-  source = "../opschl-modules/opschl-base-instance-n-loadbalancer"
+  source                 = "../opschl-modules/opschl-base-instance-n-loadbalancer"
   instances_count        = length(data.terraform_remote_state.vpc.outputs.pub_subnet_ids)
   opschl_tags            = data.terraform_remote_state.vpc.outputs.project
   instance_key_pair      = "opschl_web_key"
@@ -7,23 +7,23 @@ module "web_instance" {
   subnet_ids             = data.terraform_remote_state.vpc.outputs.pub_subnet_ids
   ami_id                 = data.aws_ami.opschl_web_db_ha-web_ami
   vpc_security_group_ids = data.terraform_remote_state.security.output.pub_sg_ids
-  pub_lb_sg_id = data.terraform_remote_state.security.outputs.pub_lb_sg_id
-  sg_ids = data.terraform_remote_state.security.outputs.pub_sg_ids
-  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+  pub_lb_sg_id           = data.terraform_remote_state.security.outputs.pub_lb_sg_id
+  sg_ids                 = data.terraform_remote_state.security.outputs.pub_sg_ids
+  vpc_id                 = data.terraform_remote_state.vpc.outputs.vpc_id
 }
 
 module "db_instance" {
-  source = "../opschl-modules/opschl-base-instance-n-loadbalancer"
-  instances_count = length(data.terraform_remote_state.vpc.outputs.priv_subnet_ids)
-  opschl_tags = data.terraform_remote_state.vpc.outputs.project
-  instance_key_pair = "opschl_db_key"
-  public_instance = false
-  subnet_ids = data.terraform_remote_state.vpc.outputs.priv_subnet_ids
-  ami_id = data.aws_ami.opschl_web_db_ha-db_ami
+  source                 = "../opschl-modules/opschl-base-instance-n-loadbalancer"
+  instances_count        = length(data.terraform_remote_state.vpc.outputs.priv_subnet_ids)
+  opschl_tags            = data.terraform_remote_state.vpc.outputs.project
+  instance_key_pair      = "opschl_db_key"
+  public_instance        = false
+  subnet_ids             = data.terraform_remote_state.vpc.outputs.priv_subnet_ids
+  ami_id                 = data.aws_ami.opschl_web_db_ha-db_ami
   vpc_security_group_ids = data.terraform_remote_state.security.output.priv_sg_ids
-  pub_lb_sg_id = ""
-  sg_ids = data.terraform_remote_state.security.outputs.priv_sg_ids
-  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+  pub_lb_sg_id           = ""
+  sg_ids                 = data.terraform_remote_state.security.outputs.priv_sg_ids
+  vpc_id                 = data.terraform_remote_state.vpc.outputs.vpc_id
 }
 
 resource "aws_lb" "opschl_ha_web_db-webPublic" {
