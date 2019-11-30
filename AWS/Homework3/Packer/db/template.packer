@@ -26,7 +26,7 @@
           "isDefault": "false"
         }
       },
-      "subnet_id": "subnet-0748d8c969b1c10d1",
+      "subnet_id": 
       "instance_type": "t2.micro",
       "associate_public_ip_address": true,
       "ssh_username": "ubuntu",
