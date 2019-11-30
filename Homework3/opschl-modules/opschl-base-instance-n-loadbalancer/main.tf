@@ -10,6 +10,7 @@ resource "aws_key_pair" "opschl" {
   key_name   = "opschl_${var.public_instance == true ? web : db}_key"
   public_key = tls_private_key.opschl.public_key_openssh
   name = "opschl_${var.public_instance == true ? web : db}_pub_key_pair"
+
 }
 
 resource "local_file" "opschl" {
@@ -19,13 +20,13 @@ resource "local_file" "opschl" {
   name = "opschl_${var.public_instance == true ? web : db}_pem_key_pair"
 }
 
-resource "aws_instance" "opschl_instance" {
+resource "aws_instance" "opschl" {
   count                  = var.instances_count
   instance_type          = var.instance_type
   key_name               = aws_key_pair.opschl[0].key_name
   ami                    = var.ami_id
   subnet_id              = var.subnet_ids[count.index]
-  vpc_security_group_ids = var.vpc_security_group_ids
+  vpc_security_group_ids = [var.sg_ids]
   tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-${var.public_instance == true ? web : db}Instance${count.index + 1}"})
 }
 
@@ -33,8 +34,9 @@ resource "aws_lb" "opschl-webPublic" {
   count = (var.public_instance == true && var.instances_count > 0 ? 1 : 0)
   name               = "${var.opschl_tags["prefix_name"]}-webPublic-lb"
   internal           = false
+
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.opschl-public-lb-sg-allow.id]
+  security_groups    = [var.pub_lb_sg_id]
   subnets            = var.subnet_ids
 
   tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-webPublic-lb" })
@@ -45,7 +47,7 @@ resource "aws_lb_target_group" "opschl-webPublic" {
   name     = "${var.opschl_tags["prefix_name"]}-webPublic-tg"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = aws_vpc.opschl_net1.id
+  vpc_id   = var.vpc_id
 }
 
 resource "aws_lb_listener" "opschl-webPublic" {
@@ -81,7 +83,7 @@ resource "aws_lb_target_group" "opschl-dbPrivate" {
   name     = "${var.opschl_tags["prefix_name"]}-dbPrivate-tg"
   port     = 3306
   protocol = "TCP"
-  vpc_id   = aws_vpc.opschl_net1.id
+  vpc_id   = var.vpc_id
 }
 
 resource "aws_lb_listener" "opschl-dbPrivate" {

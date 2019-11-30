@@ -19,22 +19,37 @@ variable "public_instance" {
   type = bool
 }
 
-variable "security_group_ids" {
-  description
+variable "sg_ids" {
+  description = "Security id"
+  type = string
+}
+
+variable "pub_lb_sg_id" {
+  description = "Pub lb Security id"
+  type = string
 }
 
 variable "subnet_ids" {
   type = list
 }
 
-variable "vpc_security_group_ids" {
-  type = list
-}
-
 variable "opschl_tags" {
   type = map
+  default = {prefix_name = "opschl"}
+}
+
+locals {
+  description = "Tags applied to all ressources"
+  common_tags = {
+    Owner = "Ran"
+    Purpose = "Learning"
+  }
 }
 
 variable "ami_id" {
+  type = string
+}
+
+variable "vpc_id" {
   type = string
 }
