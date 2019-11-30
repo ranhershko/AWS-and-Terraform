@@ -1,0 +1,2 @@
+aws cli / sdk finds secret key and access key
+in instance metadata of the  EC2 that has the IAM Role attached 

@@ -1,0 +1,57 @@
+{
+  "variables": {
+      "aws_access_key":     "{{env `AWS_ACCESS_KEY_ID`}}",
+      "aws_secret_key":     "{{env `AWS_SECRET_ACCESS_KEY`}}",
+      "ami_id": "ami-0ec539abc2ecc4e85"
+    },
+  "builders": [
+	  {
+      "type": "amazon-ebs",
+      "access_key":               "{{user `aws_access_key`}}",
+      "secret_key":               "{{user `aws_secret_key`}}",
+      "region": "us-east-1",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type":"hvm",
+          "root-device-type":"ebs",
+          "name":"ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"
+          
+        },
+        "owners": ["099720109477"],
+        "most_recent":true
+      },
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu", 
+      "ami_name": "opschl_ha_web_db-dbInstance{{isotime | clean_ami_name}}",
+      "ami_description": "opschl_ha_web_db dbnstance AMI",
+      "tags": {
+        "Name": "opschl_ha_web_db-dbInstance-AMI",
+        "purpose": "learning",
+        "ami-name": "opschl_ha_web_db-dbInstance-AMI {{timestamp}}",
+        "owner": "Ran"
+      },
+      "run_tags": {
+        "Name": "opschl_ha_web_db-dbInstance",
+        "purpose": "learning",
+        "ami-name": "Packer-opschl_ha_web_db-dbInstance {{timestamp}}",
+        "owner": "Ran"
+      }
+    }		
+	],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "./Packer/ansible/ansible.sh"
+    },
+    {
+      "type": "file",
+      "source": "./Packer/db/.my.cnf",
+      "destination": "/tmp/"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "./Packer/db/db_playbook.yml",
+      "extra_arguments": [ "--extra-vars ansible_python_interpreter=/usr/bin/python3" ]
+    }
+  ]
+}
