@@ -20,7 +20,15 @@
         "owners": ["099720109477"],
         "most_recent":true
       },
+      "vpc_filter": {
+        "filters": {
+          "tag:Name": "opschl-web-db-ha-vpc1",
+          "isDefault": "false"
+        }
+      },
+      "subnet_id": "subnet-0748d8c969b1c10d1",
       "instance_type": "t2.micro",
+      "associate_public_ip_address": true,
       "ssh_username": "ubuntu",
       "ami_name": "opschl_web_db_ha-dbInstance{{isotime | clean_ami_name}}",
       "ami_description": "opschl_web_db_ha dbnstance AMI",
