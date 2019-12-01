@@ -15,6 +15,7 @@ module "public_subnet" {
   svc_sub_type   = "web"
   sub_cidr_init  = 0
   opschl_tags = var.opschl_tags
+  public_subnet_ids = [""]
 }
 
 module "privat_subnet" {
@@ -27,6 +28,7 @@ module "privat_subnet" {
   svc_sub_type   = "db"
   sub_cidr_init  = module.public_subnet.pub_sub_count
   opschl_tags = var.opschl_tags
+  public_subnet_ids = module.public_subnet.public_subnet_ids
 }
 
 locals {

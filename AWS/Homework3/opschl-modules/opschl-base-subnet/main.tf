@@ -15,7 +15,7 @@ resource "aws_eip" "opschl_nat_ip" {
 resource "aws_nat_gateway" "opschl_nat_gw" {
   count         = (var.public == false ? var.obj_type_count : 0)
   allocation_id = element(aws_eip.opschl_nat_ip.*.id, count.index)
-  subnet_id     = var.private_subnet_ids[count.index]
+  subnet_id     = var.public_subnet_ids[count.index]
   #subnet_id     = aws_subnet.opschl_subnet[count.index].id
   tags = merge(local.common_tags, {Name = "${var.opschl_tags["prefix_name"]}-${var.svc_sub_type}NAT${count.index + 1}"})
 }

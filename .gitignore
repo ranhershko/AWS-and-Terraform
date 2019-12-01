@@ -20,3 +20,6 @@ packer_cache/
 .DS_Store
 .idea
 *.pem
+
+# temp files
+template.packer.current

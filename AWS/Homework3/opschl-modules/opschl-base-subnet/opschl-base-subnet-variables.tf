@@ -29,8 +29,8 @@ variable "sub_cidr_init" {
   type = number
 }
 
-variable "private_subnet_ids" {
-  description = "private_subnet_ids"
+variable "public_subnet_ids" {
+  description = "public_subnet_ids"
   type = list
 }
 
