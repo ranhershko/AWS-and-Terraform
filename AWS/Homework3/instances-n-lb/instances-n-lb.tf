@@ -9,6 +9,7 @@ module "web_instance" {
   pub_lb_sg_id           = data.terraform_remote_state.security.outputs.pub_lb_sg_id
   sg_ids                 = data.terraform_remote_state.security.outputs.pub_sg_ids
   vpc_id                 = data.terraform_remote_state.vpc.outputs.vpc_id
+  public_instances_ip    = module.web_instance.public_instances_ip_mask
 }
 
 module "db_instance" {
@@ -22,4 +23,5 @@ module "db_instance" {
   pub_lb_sg_id           = ""
   sg_ids                 = data.terraform_remote_state.security.outputs.priv_sg_ids
   vpc_id                 = data.terraform_remote_state.vpc.outputs.vpc_id
+  public_instances_ip = [""]
 }
