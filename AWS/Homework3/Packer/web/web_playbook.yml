@@ -10,5 +10,9 @@
       copy:
         src: /tmp/index.html
         dest: /var/www/html/index.html
+    - name: copy nginx.conf with x-forwarded-for log option for client ip log option
+      copy:
+        src: /tmp/nginx.conf
+        dest: /etc/nginx/nginx.conf
     - name: Starting nginx on boot
       service: name=nginx enabled=yes state=started

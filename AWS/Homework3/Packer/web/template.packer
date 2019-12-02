@@ -57,6 +57,11 @@
       "destination": "/tmp/"
     },
     {
+      "type": "file",
+      "source": "./Packer/web/nginx.conf",
+      "destination": "/tmp/"
+    },
+    {
       "type": "ansible-local",
       "playbook_file": "./Packer/web/web_playbook.yml"
     }
