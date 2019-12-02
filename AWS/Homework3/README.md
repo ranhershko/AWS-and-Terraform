@@ -60,8 +60,7 @@ The resources is highly available and secure in AWS environment. The packer buil
   terraform plan;
   terraform apply --auto-approve;
   
-  #### Build 2 Nginx servers, Public load balancer
-  #### Build 2 mysql servers, Private load balancer
+  ### Build 2 Nginx servers, Public load balancer & Build 2 mysql servers, Private load balancer
   cd ..;
   terraform init;
   terraform plan;
