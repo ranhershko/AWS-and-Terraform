@@ -26,10 +26,11 @@ resource "aws_instance" "opschl" {
   key_name               = aws_key_pair.opschl[0].key_name
   ami                    = var.ami_id
   subnet_id              = var.subnet_ids[count.index]
+  iam_instance_profile = (var.public_instance == true ? aws_iam_instance_profile.opschl_instance_profile[0].name : "")
   vpc_security_group_ids = [var.sg_ids]
-  user_data = (var.public_instance == true ? var.web_user_data : "")
+  user_data = (var.public_instance == true ? "${file("${path.module}/shell/InstallFluentdSendApacheLogsS3.sh")}" : "")
   tags = merge(local.common_tags, { Name = "${var.opschl_tags["prefix_name"]}-${var.public_instance == true ? "web" : "db"}Instance${count.index + 1}"})
-  #depends_on             = [aws_s3_bucket.opschl-nginx-accesslog]
+  # depends_on             = [aws_s3_bucket.opschl-web-db-ha-nginx-accesslog]
 }
 
 resource "aws_lb" "opschl-webPublic" {
@@ -50,8 +51,8 @@ resource "aws_lb_target_group" "opschl-webPublic" {
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
-  stickiness {    
-    type            = "lb_cookie"    
+  stickiness {
+    type            = "lb_cookie"
     cookie_duration = 1
     enabled         = true
   }
