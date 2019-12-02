@@ -11,9 +11,6 @@ The resources is highly available and secure in AWS environment. The packer buil
    c) Add S3 bucket for Nginx access log transfer
 3) Add nginx.conf file to Packer web server installation for support client Ip log using Nginx X-forwarded-for log option
 
-## AWS key pair
-  AWS key-pair will be create automatically and save on local dir
-
 ## Prerequisites
   ### Configure your AWS credentials using
   aws configure
