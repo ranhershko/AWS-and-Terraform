@@ -21,8 +21,8 @@ The resources is highly available and secure in AWS environment. The packer buil
   Install Packer and make sure it's on your PATH.
 
   ### For initialize vpc terraform run
-  ### Create remote terraform state for vpc network configuration
-  ###  Create Main S3 bucket for terraform remote state and specific tfstate for each and DynamoDB tables for lock mechanism
+  #### Create remote terraform state for vpc network configuration
+  ####  Create Main S3 bucket for terraform remote state and specific tfstate for each and DynamoDB tables for lock mechanism
   cd ./AWS/Homework3/vpc/remote_state
   terraform init
   terraform plan
