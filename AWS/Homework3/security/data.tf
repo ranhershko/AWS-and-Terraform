@@ -8,5 +8,5 @@ data "terraform_remote_state" "vpc" {
 }
 
 data "http" "myip" {
-  url = "http://ifconfig.co/ip"
+  url = "https://api.ipify.org"
 }
