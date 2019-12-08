@@ -24,12 +24,5 @@ variable "subnet2_address_prefix" {
   default = "10.0.1.0/24"
 }
 
-locals {
-  description = "Tags applied to all ressources"
-  common_tags = {
-    Owner       = "Ran"
-    Purpose     = "Learning"
-    environment = "dev"
-    CreatedBy   = "Terraform-azure-${var.project["prefix_name"]}"
-  }
-}
+
+
