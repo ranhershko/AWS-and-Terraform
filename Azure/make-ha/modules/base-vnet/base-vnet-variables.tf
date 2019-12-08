@@ -35,6 +35,11 @@ variable "netwatcher" {
   default     = null
 }
 
+variable "nsg_ids" {
+  description = "Network securities vnet associate"
+  type = map
+}
+
 locals {
   description = "Tags applied to all ressources"
   common_tags = {

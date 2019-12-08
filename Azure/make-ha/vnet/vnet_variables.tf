@@ -29,6 +29,7 @@ locals {
   common_tags = {
     Owner       = "Ran"
     Purpose     = "Learning"
+    environment = "dev"
     CreatedBy   = "Terraform-azure-${var.project["prefix_name"]}"
   }
 }
