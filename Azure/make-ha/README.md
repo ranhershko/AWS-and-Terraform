@@ -1,5 +1,5 @@
 #AZURE HA
-## Create Azure vnet remote statec
+## Create Azure vnet remote state
 cd remote_state
 terraform init
 terraform validate
