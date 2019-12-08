@@ -22,7 +22,7 @@ resource "azurerm_storage_container" "sa-rs-ct" {
 }
 
 resource "local_file" "backend-config" {
-  content  = "storage_account_name = ${local.storage["stor_acct"]}\ncontainer_name = ${local.storage["cont_name"]}\nkey = ${local.storage["tera_key"]}\nsas_token = ${local.storage["sas"]}"
+  content  = "storage_account_name = \"${local.storage["stor_acct"]}\"\ncontainer_name = \"${local.storage["cont_name"]}\"\nkey = \"${local.storage["tera_key"]}\"\nsas_token = \"${local.storage["sas"]}\""
   filename = "../backend-config.txt"
 }
 
