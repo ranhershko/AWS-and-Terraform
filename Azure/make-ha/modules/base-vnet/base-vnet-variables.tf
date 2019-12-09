@@ -21,14 +21,6 @@ variable "project" {
     }
 }
 
-variable "subnet1_address_prefix" {
-    type = string
-}
-
-variable "subnet2_address_prefix" {
-    type = string
-}
-
 variable "netwatcher" {
   description = "Network watcher creation. If set it will create Network Watcher resource using standard naming standard."
   type        = object({ resource_group_location = string, log_analytics_workspace_id = string })
@@ -37,7 +29,7 @@ variable "netwatcher" {
 
 variable "nsg_ids" {
   description = "Network securities vnet associate"
-  type = map
+  type = list
 }
 
 locals {

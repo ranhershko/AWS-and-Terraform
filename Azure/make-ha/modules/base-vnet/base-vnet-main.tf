@@ -9,22 +9,7 @@ resource "azurerm_virtual_network" "base_net" {
     location = var.location
     name = "${var.project["prefix_name"]}-vnet"
     resource_group_name = azurerm_resource_group.base_netrg.name
-    nsg_ids = var.nsg_ids
     tags = merge(local.common_tags, {"Name" = "${var.project["prefix_name"]}-vnet"})
-}
-
-resource "azurerm_subnet" "base_pub_subnet" {
-    name = "${var.project["prefix_name"]}-pusub1"
-    address_prefix = var.subnet1_address_prefix
-    resource_group_name = azurerm_resource_group.base_netrg.name
-    virtual_network_name = azurerm_virtual_network.base_net.name
-}
-
-resource "azurerm_subnet" "base_priv_subnet" {
-    name = "${var.project["prefix_name"]}-privsub1"
-    address_prefix = var.subnet2_address_prefix
-    resource_group_name = azurerm_resource_group.base_netrg.name
-    virtual_network_name = azurerm_virtual_network.base_net.name
 }
 
 resource "azurerm_resource_group" "netwatcher" {
