@@ -1,9 +1,9 @@
 variable "local_dns_servers" {
-  default = ["10.0.0.4", "10.0.0.5"]
+  default = []
 }
 
 variable "location" {
-  default = "West Europe"
+  default = "eastus2"
 }
 
 variable "vnet_address_space" {
@@ -15,14 +15,3 @@ variable "project" {
     prefix_name = "testMe"
   }
 }
-
-variable "subnet1_address_prefix" {
-  default = "10.0.0.0/24"
-}
-
-variable "subnet2_address_prefix" {
-  default = "10.0.1.0/24"
-}
-
-
-
