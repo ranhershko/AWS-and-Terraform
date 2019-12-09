@@ -3,13 +3,13 @@
 cd remote_state;
 terraform init;
 terraform validate;
-terraform plan -out vnet.remotestate.tfplan;
-terraform apply --auto-approve vnet.remotestate.tfplan
+terraform plan -out vnet.remotestate.tvplan;
+terraform apply --auto-approve vnet.remotestate.tvplan
 
 ##### Create vnet & subnets
 cd ..;
 terraform init -backend=true -backend-config=./backend-config.txt;
 terraform validate;
-terraform plan -out vnet.tfplan;
-terraform apply --auto-approve vnet.tfplan
+terraform plan -out vnet.tvplan;
+terraform apply --auto-approve vnet.tvplan
 
