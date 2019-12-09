@@ -6,6 +6,7 @@ resource "random_integer" "sa-rs-num" {
 resource "azurerm_resource_group" "sa-rs-rg" {
   name     = "${var.project["prefix_name"]}-sa-remotestat-rg"
   location = var.location
+  tags     = merge(local.common_tags, { "Name" = "${var.project["prefix_name"]}-vnetrg-remotestate" })
 }
 
 resource "azurerm_storage_account" "sa-rs" {
@@ -14,6 +15,7 @@ resource "azurerm_storage_account" "sa-rs" {
   resource_group_name      = azurerm_resource_group.sa-rs-rg.name
   account_tier             = "Standard"
   account_replication_type = "LRS"
+  tags                     = merge(local.common_tags, { "Name" = "${var.project["prefix_name"]}-vnetsa-remotestate" })
 }
 
 resource "azurerm_storage_container" "sa-rs-ct" {
