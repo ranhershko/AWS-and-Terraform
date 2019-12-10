@@ -11,7 +11,7 @@
         name: nginx
         state: latest
 
-    - name: copy nginx.conf with x-forwarded-for log option for client ip log option
+    - name: copy nginx.conf with x-forwarded-for log option for client ip log
       copy:
         src: /tmp/nginx.conf
         dest: /etc/nginx/nginx.conf
