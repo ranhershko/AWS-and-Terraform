@@ -12,7 +12,7 @@
       "client_secret": "{{user `azure_client_secret`}}",
       "subscription_id": "{{user `azure_subscription_id`}}",
       "tenant_id": "{{user `azure_tenant_id`}}",
-      "managed_image_resource_group_name": "packeramirg",
+      "managed_image_resource_group_name": "packer_managed_ami_rg",
       "managed_image_name": "packer-web-ami",
 
       "os_type": "Linux",
@@ -20,7 +20,7 @@
       "image_offer": "CentOS",
       "image_sku": "7.5",
       "location": "eastus2",
-      "vm_size": "DS1_v2",
+      "vm_size": "Standard_F2s_v2",
       "azure_tags": {
               "Name": "testMe-ha-webInstance-AMI",
               "purpose": "learning",
