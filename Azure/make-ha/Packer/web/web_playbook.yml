@@ -1,0 +1,28 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Add epel-release repo
+      yum:
+        name: epel-release
+        state: latest
+
+    - name: Install nginx
+      yum:
+        name: nginx
+        state: latest
+
+    - name: copy nginx.conf with x-forwarded-for log option for client ip log option
+      copy:
+        src: /tmp/nginx.conf
+        dest: /etc/nginx/nginx.conf
+
+    - name: Insert Index Page
+      template:
+        src: index.html
+        dest: /usr/share/nginx/html/index.html
+
+    - name: Start NGiNX
+      service:
+        name: nginx
+        state: started
+        enabled: yes

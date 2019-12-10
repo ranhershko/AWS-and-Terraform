@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>This page serve by <pre><!--#exec cmd="hostname" --></pre> Server</title>
+</head>
+<body>
+<h1>OpsSchool Rules</h1>
+<pre><!--#exec cmd="ssh -i .ssh/my_id_rsa azureuser@10.0.0.4 mysql -uroot -psecret -e 'show variables where Variable_name=\'hostname\'' mysql|grep -v Value|awk '{print$2}'" --></pre>
+<script> setInterval( function () { var randomColor = Math.floor(Math.random()*16777215).toString(16); document.body.style.backgroundColor = "#"+randomColor; },1000); </script>
+</body>
+</html>

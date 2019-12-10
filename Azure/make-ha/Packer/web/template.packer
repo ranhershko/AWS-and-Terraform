@@ -1,0 +1,52 @@
+{
+  "variables": {
+      "azure_client_id": "{{env `PACKER_client_id`}}",
+      "azure_client_secret": "{{env `PACKER_client_secret`}}",
+      "azure_subscription_id": "{{env `PACKER_subscription_id`}}",
+      "azure_tenant_id": "{{env `PACKER_tenant_id`}}",
+      "azure_object_id": "{{env `PACKER_object_id`}}"
+    },
+  "builders": [{
+      "type": "azure-arm",
+      "client_id": "{{user `azure_client_id`}}",
+      "client_secret": "{{user `azure_client_secret`}}",
+      "subscription_id": "{{user `azure_subscription_id`}}",
+      "tenant_id": "{{user `azure_tenant_id`}}",
+      "managed_image_resource_group_name": "packeramirg",
+      "managed_image_name": "packer-web-ami",
+
+      "os_type": "Linux",
+      "image_publisher": "OpenLogic",
+      "image_offer": "CentOS",
+      "image_sku": "7.5",
+      "location": "eastus2",
+      "vm_size": "DS1_v2",
+      "azure_tags": {
+              "Name": "testMe-ha-webInstance-AMI",
+              "purpose": "learning",
+              "ami-name": "testMe-ha-webInstance-AMI {{timestamp}}",
+              "owner": "Ran"
+      }
+  }],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "./Packer/ansible/ansible_install.sh"
+    },
+    {
+      "type": "file",
+      "source": "./Packer/web/index.html",
+      "destination": "/tmp/"
+    },
+    {
+      "type": "file",
+      "source": "./Packer/web/nginx.conf",
+      "destination": "/tmp/"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "./Packer/web/web_playbook.yml"
+    }
+  ]
+}
