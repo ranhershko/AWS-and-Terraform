@@ -2,16 +2,13 @@
   "variables": {
       "azure_client_id": "{{env `PACKER_client_id`}}",
       "azure_client_secret": "{{env `PACKER_client_secret`}}",
-      "azure_subscription_id": "{{env `PACKER_subscription_id`}}",
-      "azure_tenant_id": "{{env `PACKER_tenant_id`}}",
-      "azure_object_id": "{{env `PACKER_object_id`}}"
+      "azure_subscription_id": "{{env `PACKER_subscription_id`}}"
     },
   "builders": [{
       "type": "azure-arm",
       "client_id": "{{user `azure_client_id`}}",
       "client_secret": "{{user `azure_client_secret`}}",
       "subscription_id": "{{user `azure_subscription_id`}}",
-      "tenant_id": "{{user `azure_tenant_id`}}",
       "managed_image_resource_group_name": "packer_managed_ami_rg",
       "managed_image_name": "packer-web-ami",
 
