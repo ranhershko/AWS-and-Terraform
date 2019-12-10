@@ -1,0 +1,61 @@
+---
+- hosts: all
+  vars:
+    mysql_root_password: "{{ lookup('password', '/tmp/passwordfile chars=ascii_letters,digits,hexdigits,punctuation') }}"
+  become: true
+  tasks:
+    - name: Install mariadb-server
+      yum: 
+        name: mariadb-server
+        update_cache: yes 
+        state: present
+    
+    - name: debug root password
+      debug:
+        var: mysql_root_password
+    # Reset root password
+    - name: Stop marisdb-server
+      systemd:
+        name: mariadb
+        state: stopped
+    - name: set environment variables
+      shell: systemctl set-environment MYSQLD_OPTS="--skip-grant-tables"
+    - name: Start mariadb
+      systemd:
+        name: mariadb
+        state: started
+    - name: Reset root PW
+      command: mysql -u root --execute="UPDATE mysql.user SET authentication_string = PASSWORD('{{ mysql_root_password }}') WHERE User = 'root' AND (Host = '{{ ansible_hostname }}' OR Host = '{{ ansible_default_ipv4.address }}' OR Host = 'localhost' OR Host = '127.0.0.1');"
+    - name: Flush MySQL privileges
+      command: mysql -u root --execute="FLUSH PRIVILEGES"
+    - name: Stop mariadb
+      systemd:
+        name: mariadb
+        state: stopped
+    - name: Unset environment variables
+      shell: systemctl unset-environment MYSQLD_OPTS
+    - name: Start mariadb
+      systemd:
+        name: mariadb
+        state: started 
+        enabled: true
+    
+    #- name: Ensure Anonymous user(s) are not in the database
+      #mysql_user: name='' host={{ item }} state=absent
+      #with_items:
+        #- "{{ ansible_hostname }}"
+        #- 127.0.0.1
+        #- ::1
+        #- localhost
+    #- name: Remove the test database
+      #mysql_db: name=test state=absent
+      #notify:
+        #- Restart MySQL
+
+  handlers:
+  - name: Restart mariadb
+    systemd:
+      name: mariadb
+      state: restarted
+  - name: Write root .my.cnf file
+    shell: printf '[client]\nuser=root\npassword={{ mysql_root_pass }}' > /root/.my.cnf
