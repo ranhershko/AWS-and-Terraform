@@ -3,7 +3,7 @@
       "azure_client_id": "{{env `PACKER_client_id`}}",
       "azure_client_secret": "{{env `PACKER_client_secret`}}",
       "azure_subscription_id": "{{env `PACKER_subscription_id`}}"
-    },
+  },
   "builders": [{
       "type": "azure-arm",
       "client_id": "{{user `azure_client_id`}}",
