@@ -10,7 +10,7 @@
       "client_secret": "{{user `azure_client_secret`}}",
       "subscription_id": "{{user `azure_subscription_id`}}",
       "managed_image_resource_group_name": "packer_managed_ami_rg",
-      "managed_image_name": "packer-web-ami",
+      "managed_image_name": "packer-nginx-ami",
 
       "os_type": "Linux",
       "image_publisher": "OpenLogic",
