@@ -3,8 +3,7 @@
       "azure_client_id": "{{env `PACKER_client_id`}}",
       "azure_client_secret": "{{env `PACKER_client_secret`}}",
       "azure_subscription_id": "{{env `PACKER_subscription_id`}}",
-      "azure_tenant_id": "{{env `PACKER_tenant_id`}}",
-      "azure_object_id": "{{env `PACKER_object_id`}}"
+      "azure_tenant_id": "{{env `PACKER_tenant_id`}}"
     },
   "builders": [{
       "type": "azure-arm",
@@ -12,15 +11,15 @@
       "client_secret": "{{user `azure_client_secret`}}",
       "subscription_id": "{{user `azure_subscription_id`}}",
       "tenant_id": "{{user `azure_tenant_id`}}",
-      "managed_image_resource_group_name": "packeramirg",
-      "managed_image_name": "packer-web-ami",
+      "managed_image_resource_group_name": "packer_managed_ami_rg",
+      "managed_image_name": "packer-nginx-ami",
 
       "os_type": "Linux",
       "image_publisher": "OpenLogic",
       "image_offer": "CentOS",
       "image_sku": "7.5",
       "location": "eastus2",
-      "vm_size": "DS1_v2",
+      "vm_size": "Standard_F2s_v2",
       "azure_tags": {
               "Name": "testMe-ha-webInstance-AMI",
               "purpose": "learning",

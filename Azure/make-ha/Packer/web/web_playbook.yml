@@ -18,7 +18,7 @@
 
     - name: Insert Index Page
       template:
-        src: index.html
+        src: /tmp/index.html
         dest: /usr/share/nginx/html/index.html
 
     - name: Start NGiNX
