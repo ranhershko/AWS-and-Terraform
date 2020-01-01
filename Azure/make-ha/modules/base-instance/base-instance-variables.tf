@@ -38,6 +38,10 @@ variable "sub_count" {
   type = number
 }
 
+variable "count" {
+  type = number
+}
+
 variable "vnet_address_space" {
   type        = list
   description = "Vnet address space"
@@ -58,6 +62,11 @@ variable "packer_img_uri" {
 variable "vm_size" {
   type = string
 }
+
+variable "public" {
+  type = bool
+}
+
 
 
 locals {
