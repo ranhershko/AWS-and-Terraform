@@ -1,11 +1,35 @@
 variable "location" {
-  default = "West Europe"
+  type = string
 }
 
 variable "project" {
   default = {
-    prefix_name = "testMe"
+    prefix_name = ""
   }
+}
+
+variable "stor_account_repl_type" {
+  type = string
+}
+
+variable "stor_account_tier" {
+  type = string
+}
+
+variable "client_id" {
+  type = string
+}
+
+variable "client_secret" {
+  type = string
+}
+
+variable "tenant_id" {
+  type = string
+}
+
+variable "subscription_id" {
+  type = string
 }
 
 locals {
@@ -13,6 +37,6 @@ locals {
   common_tags = {
     Owner     = "Ran"
     Purpose   = "Learning"
-    CreatedBy = "Terraform-${var.project["prefix_name"]}-vnet-remotestate"
+    CreatedBy = "Terraform-${var.project["prefix_name"]}-remotestate"
   }
 }
