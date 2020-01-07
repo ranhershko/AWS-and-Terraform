@@ -3,43 +3,20 @@ variable "location" {
   description = "Resouce group location"
 }
 
-variable "instance_rg_name" {
+variable "stor_account_tier" {
   type = string
 }
 
-variable "rg_name" {
-  type = string
-}
-
-variable "sa_account_tier" {
-  type = string
-}
-
-variable "sa_replic_type" {
+variable "stor_account_repl_type" {
   type = string
 }
 
 variable "project" {
   type        = map
-  description = "Project name"
-}
-
-variable "vnet_rg_name" {
-  description = "vnet resource group name"
-  type        = string
-}
-
-variable "vnet_name" {
-  description = "vnet name"
-  type        = string
-}
-
-variable "sub_count" {
-  type = number
-}
-
-variable "count" {
-  type = number
+  description = "Project info"
+  default = {
+    prefix_name = ""
+  }
 }
 
 variable "vnet_address_space" {
@@ -51,29 +28,43 @@ variable "is_public" {
   type = bool
 }
 
-variable "subnet_id" {
+variable "availability_set_domain_count" {
+  type = number
+}
+
+variable "packer_rg" {
   type = string
 }
 
-variable "packer_img_uri" {
+variable "managed_disk_type" {
   type = string
+}
+
+variable "admin_username" {
+  type = string
+}
+
+variable "subnet_ids" {
+  type = list
 }
 
 variable "vm_size" {
   type = string
 }
 
-variable "public" {
-  type = bool
+variable "os_type" {
+  type = string
 }
 
-
+variable "resources_count" {
+  type = number
+}
 
 locals {
   description = "Tags applied to all ressources"
   common_tags = {
     Owner     = "Ran"
     Purpose   = "Learning"
-    CreatedBy = "Terraform-${var.project["prefix_name"]}"
+    CreatedBy = "Terraform-${var.project["prefix_name"]}-vm"
   }
 }
