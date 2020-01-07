@@ -9,19 +9,19 @@
       "client_id": "{{user `azure_client_id`}}",
       "client_secret": "{{user `azure_client_secret`}}",
       "subscription_id": "{{user `azure_subscription_id`}}",
-      "managed_image_resource_group_name": "packer_managed_ami_rg",
-      "managed_image_name": "packer-mariadb-ami",
+      "managed_image_resource_group_name": "packer_managed_img_rg",
+      "managed_image_name": "packer-mariadb-img",
 
       "os_type": "Linux",
       "image_publisher": "OpenLogic",
       "image_offer": "CentOS",
       "image_sku": "7.5",
       "location": "eastus2",
-      "vm_size": "Standard_F2s_v2",
+      "vm_size": "Standard_D2_v2",
       "azure_tags": {
-          "Name": "testMe-ha-dbInstance-AMI",
+          "Name": "testMe-ha-dbInstance-IMG",
           "purpose": "learning",
-          "ami-name": "testMe-ha-dbInstance-AMI {{timestamp}}",
+          "ami-name": "testMe-ha-dbInstance-IMG {{timestamp}}",
           "owner": "Ran"
       }
   }],
@@ -29,11 +29,6 @@
     {
       "type": "shell",
       "script": "./Packer/ansible/ansible_install.sh"
-    },
-    {
-      "type": "file",
-      "source": "./Packer/db/.my.cnf",
-      "destination": "/tmp/"
     },
     {
       "type": "ansible-local",

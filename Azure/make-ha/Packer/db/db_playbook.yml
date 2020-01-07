@@ -57,5 +57,5 @@
     systemd:
       name: mariadb
       state: restarted
-  - name: Write root .my.cnf file
-    shell: printf '[client]\nuser=root\npassword={{ mysql_root_pass }}' > /root/.my.cnf
+#  - name: Write root .my.cnf file
+#    shell: printf '[client]\nuser=root\npassword={{ mysql_root_pass }}' > /root/.my.cnf
