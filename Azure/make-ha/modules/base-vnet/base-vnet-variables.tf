@@ -1,8 +1,3 @@
-variable "local_dns_servers" {
-    type = list
-    description = "Default local DNS servers list"
-}
-
 variable "location" {
     type = string
     description = "Resouce group location"
@@ -27,17 +22,12 @@ variable "netwatcher" {
   default     = null
 }
 
-variable "nsg_ids" {
-  description = "Network securities vnet associate"
-  type = list
-}
-
 locals {
   description = "Tags applied to all ressources"
   common_tags = {
     Owner       = "Ran"
     Purpose     = "Learning"
-    CreatedBy   = "Terraform-${var.project["prefix_name"]}"
+    CreatedBy   = "Terraform-${var.project["prefix_name"]}-vnet"
   }
 }
 

@@ -1,15 +1,16 @@
 resource "azurerm_resource_group" "base_netrg" {
     location = var.location
-    name = "${var.project["prefix_name"]}-vnetrg"
-    tags = merge(local.common_tags, {"Name" = "${var.project["prefix_name"]}-vnetrg"})
+    name     = "${var.project["prefix_name"]}-vnet-rg"
+    tags     = merge(local.common_tags, {"Name" = "${var.project["prefix_name"]}-vnet-rg"})
 }
 
 resource "azurerm_virtual_network" "base_net" {
-    address_space = var.vnet_address_space
-    location = var.location
-    name = "${var.project["prefix_name"]}-vnet"
+    address_space       = var.vnet_address_space
+    location            = var.location
+    name                = "${var.project["prefix_name"]}-vnet"
     resource_group_name = azurerm_resource_group.base_netrg.name
-    tags = merge(local.common_tags, {"Name" = "${var.project["prefix_name"]}-vnet"})
+    dns_servers         = [cidrhost(var.vnet_address_space[0], 4), cidrhost(var.vnet_address_space[0], 5)]
+    tags                = merge(local.common_tags, {"Name" = "${var.project["prefix_name"]}-vnet"})
 }
 
 resource "azurerm_resource_group" "netwatcher" {

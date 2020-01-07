@@ -6,9 +6,6 @@ variable "location" {
 variable "project" {
   type        = map
   description = "Project name"
-  //    default = {}
-  //        prefix_name = ""
-  //    }
 }
 
 variable "vnet_rg_name" {
@@ -21,7 +18,7 @@ variable "vnet_name" {
   type        = string
 }
 
-variable "sub_count" {
+variable "resources_count" {
   type = number
 }
 
