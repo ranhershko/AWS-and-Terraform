@@ -1,17 +1,31 @@
-variable "local_dns_servers" {
-  default = []
-}
-
 variable "location" {
-  default = "eastus2"
+  type = string
 }
 
 variable "vnet_address_space" {
-  default = ["10.0.0.0/16"]
+  type = list
 }
 
 variable "project" {
-  default = {
-    prefix_name = "testMe"
-  }
+  type = map
+}
+
+variable "resources_count" {
+  type = number
+}
+
+variable "client_id" {
+  type = string
+}
+
+variable "client_secret" {
+  type = string
+}
+
+variable "tenant_id" {
+  type = string
+}
+
+variable "subscription_id" {
+  type = string
 }
