@@ -7,7 +7,9 @@
 
 #.tfplan files
 .tvplan
+.tfplan
 *.tvplan
+*.tfplan
 
 # .tfvars files
 *.tfvars
